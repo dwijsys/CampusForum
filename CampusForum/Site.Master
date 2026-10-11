@@ -1,0 +1,105 @@
+<%@ Master Language="C#" %>
+<script runat="server">
+    // Read the current page name so we can display the correct menu.
+    protected string CurrentPath
+    {
+        get { return Request.AppRelativeCurrentExecutionFilePath.ToLowerInvariant(); }
+    }
+
+    protected bool IsAdmin
+    {
+        get { return CurrentPath.StartsWith("~/admin/") && !CurrentPath.EndsWith("/login.aspx"); }
+    }
+
+    protected bool IsGuest
+    {
+        get { return CurrentPath.EndsWith("~/default.aspx"); }
+    }
+
+    protected bool IsAdminLogin
+    {
+        get { return CurrentPath.EndsWith("/admin/login.aspx"); }
+    }
+
+    // Mark the active page blue in the sidebar.
+    protected string Active(string page)
+    {
+        return CurrentPath.EndsWith("/" + page.ToLowerInvariant() + ".aspx") ? "active" : "";
+    }
+</script>
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+    <link rel="stylesheet" href="/Content/site.css" />
+</head>
+<body class="<%= IsAdminLogin ? "mode-admin-login" : (IsAdmin ? "mode-admin" : (IsGuest ? "mode-guest" : "mode-student")) %>">
+    <header class="topbar">
+        <a class="brand" href="<%= IsAdmin ? ResolveUrl("~/Admin/Dashboard.aspx") : (IsGuest ? ResolveUrl("~/Default.aspx") : ResolveUrl("~/Student/Feed.aspx")) %>"><%= IsAdmin ? "Campus Admin Portal" : "CampusForum" %></a>
+        <form class="global-search" action="<%= ResolveUrl("~/Common/Search.aspx") %>" method="get">
+            <input name="q" placeholder="<%= IsAdmin ? "Search system..." : "Search forum..." %>" aria-label="Search CampusForum" />
+        </form>
+        <nav class="top-links">
+            <% if (IsAdmin) { %>
+                <a href="<%= ResolveUrl("~/Admin/Dashboard.aspx") %>">Dashboard</a>
+                <a href="<%= ResolveUrl("~/Admin/Departments.aspx") %>">Departments</a>
+                <a href="<%= ResolveUrl("~/Default.aspx") %>">Logout</a>
+            <% } else if (IsGuest) { %>
+                <a href="<%= ResolveUrl("~/Default.aspx") %>">Home</a>
+                <a href="<%= ResolveUrl("~/Common/Help.aspx") %>">About</a>
+                <a href="<%= ResolveUrl("~/Common/Help.aspx") %>">FAQ</a>
+                <a href="<%= ResolveUrl("~/Common/Help.aspx") %>">Help</a>
+                <a href="<%= ResolveUrl("~/Default.aspx") %>">Login</a>
+            <% } else { %>
+                <a href="<%= ResolveUrl("~/Student/Feed.aspx") %>">Home</a>
+                <a href="<%= ResolveUrl("~/Common/Departments.aspx") %>">Departments</a>
+                <a href="<%= ResolveUrl("~/Student/Clubs.aspx") %>">Clubs</a>
+                <a href="<%= ResolveUrl("~/Student/Messages.aspx") %>" aria-label="Messages">&#x2709;</a>
+                <a href="<%= ResolveUrl("~/Student/Profile.aspx") %>" aria-label="Profile">&#x25CF;</a>
+            <% } %>
+        </nav>
+    </header>
+
+    <div class="app-grid">
+        <aside class="sidebar">
+            <% if (IsAdmin) { %>
+                <div class="side-heading">ADMIN PANEL <small>Institutional Oversight</small></div>
+                <a class="side-link <%= Active("dashboard") %>" href="<%= ResolveUrl("~/Admin/Dashboard.aspx") %>">&#x25A3; &nbsp; Dashboard</a>
+                <a class="side-link <%= Active("students") %>" href="<%= ResolveUrl("~/Admin/Students.aspx") %>">&#x2659; &nbsp; Students</a>
+                <a class="side-link <%= Active("faculty") %>" href="<%= ResolveUrl("~/Admin/Faculty.aspx") %>">&#x265F; &nbsp; Faculty</a>
+                <a class="side-link <%= Active("departments") %>" href="<%= ResolveUrl("~/Admin/Departments.aspx") %>">&#x25A4; &nbsp; Departments</a>
+                <a class="side-link <%= Active("moderation") %>" href="<%= ResolveUrl("~/Admin/Moderation.aspx") %>">&#x2691; &nbsp; Moderation</a>
+                <a class="side-link <%= Active("broadcast") %>" href="<%= ResolveUrl("~/Admin/Broadcast.aspx") %>">&#x25C8; &nbsp; Broadcast</a>
+            <% } else { %>
+                <div class="side-heading">Navigation <small>Main Menu</small></div>
+                <a class="side-link <%= Active("feed") %>" href="<%= ResolveUrl("~/Student/Feed.aspx") %>">&#x2302; &nbsp; Home Feed</a>
+                <a class="side-link <%= Active("departments") %>" href="<%= ResolveUrl("~/Common/Departments.aspx") %>">&#x25A4; &nbsp; Departments</a>
+                <a class="side-link <%= Active("events") %>" href="<%= ResolveUrl("~/Student/Events.aspx") %>">&#x25A6; &nbsp; Events</a>
+                <a class="side-link <%= Active("projecthub") %>" href="<%= ResolveUrl("~/Student/ProjectHub.aspx") %>">&#x2692; &nbsp; Project Hub</a>
+                <a class="side-link <%= Active("clubs") %>" href="<%= ResolveUrl("~/Student/Clubs.aspx") %>">&#x2667; &nbsp; Clubs</a>
+                <a class="side-link <%= Active("messages") %>" href="<%= ResolveUrl("~/Student/Messages.aspx") %>">&#x2709; &nbsp; Messages</a>
+                <a class="side-link <%= Active("profile") %>" href="<%= ResolveUrl("~/Student/Profile.aspx") %>">&#x25C9; &nbsp; Profile</a>
+                <a class="side-link <%= Active("saved") %>" href="<%= ResolveUrl("~/Common/Saved.aspx") %>">&#x2662; &nbsp; Saved Content</a>
+            <% } %>
+            <div class="side-bottom">
+                <% if (!IsAdmin) { %>
+                    <a href="<%= ResolveUrl("~/Student/Report.aspx") %>">&#x2691; &nbsp; Report Incident</a>
+                <% } %>
+                <a href="<%= ResolveUrl("~/Common/Help.aspx") %>">&#x24D8; &nbsp; Help</a>
+                <a href="<%= ResolveUrl("~/Default.aspx") %>">&#x21A9; &nbsp; Logout</a>
+            </div>
+        </aside>
+        <main class="workspace">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+        </main>
+    </div>
+    <footer class="footer">
+        <span>&#xA9; 2024 CAMPUSFORUM. BUILT FOR THE COMMUNITY.</span>
+        <span><a href="<%= ResolveUrl("~/Common/Help.aspx") %>">FAQ</a> &nbsp; <a href="<%= ResolveUrl("~/Common/Help.aspx") %>">Help Center</a> &nbsp; Settings &nbsp; Privacy Policy</span>
+    </footer>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script src="<%= ResolveUrl("~/Scripts/site.js") %>"></script>
+</body>
+</html>

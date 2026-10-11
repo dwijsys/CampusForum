@@ -1,0 +1,15 @@
+CAMPUSFORUM — ASP.NET WEB FORMS (.NET FRAMEWORK 4.8)
+
+1. Extract this ZIP (do NOT open the ZIP as a folder in Visual Studio).
+2. Double-click CampusForum.sln (or Visual Studio > File > Open > Project/Solution).
+3. Visual Studio must have the ASP.NET and web development workload and .NET Framework 4.8 targeting pack installed.
+4. In Solution Explorer, right-click CampusForum (project) > Set as Startup Project.
+5. Right-click Default.aspx > Set as Start Page.
+6. Press F5. Run the website through IIS Express, not a DLL.
+
+The old files-only ZIP is not needed. This ZIP includes the actual .sln and .csproj files.
+
+If you see an error that Microsoft.WebApplication.targets was not found,
+install the 'ASP.NET and web development' workload in Visual Studio Installer.
+
+This is a UI/navigation demonstration. It is not database-backed or a secure login system.

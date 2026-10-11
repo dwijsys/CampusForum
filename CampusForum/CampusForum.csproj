@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1DA8651C-538B-4AC8-8FE8-516733147D50}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CampusForum</RootNamespace>
+    <AssemblyName>CampusForum</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">17.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Admin\Broadcast.aspx" />
+    <Content Include="Admin\Dashboard.aspx" />
+    <Content Include="Admin\DepartmentDetails.aspx" />
+    <Content Include="Admin\Departments.aspx" />
+    <Content Include="Admin\EditFaculty.aspx" />
+    <Content Include="Admin\Faculty.aspx" />
+    <Content Include="Admin\Login.aspx" />
+    <Content Include="Admin\Moderation.aspx" />
+    <Content Include="Admin\Students.aspx" />
+    <Content Include="Common\Departments.aspx" />
+    <Content Include="Common\Help.aspx" />
+    <Content Include="Common\Saved.aspx" />
+    <Content Include="Common\Search.aspx" />
+    <Content Include="Content\site.css" />
+    <Content Include="Default.aspx" />
+    <Content Include="Scripts\site.js" />
+    <Content Include="Site.Master" />
+    <Content Include="Student\Applications.aspx" />
+    <Content Include="Student\ClubDetails.aspx" />
+    <Content Include="Student\Clubs.aspx" />
+    <Content Include="Student\EventDetails.aspx" />
+    <Content Include="Student\Events.aspx" />
+    <Content Include="Student\Feed.aspx" />
+    <Content Include="Student\Messages.aspx" />
+    <Content Include="Student\Profile.aspx" />
+    <Content Include="Student\ProjectHub.aspx" />
+    <Content Include="Student\Report.aspx" />
+    <Content Include="Web.config" />
+    <Content Include="images\campus_cover.jpg" />
+    <Content Include="images\campus_students.jpg" />
+    <Content Include="images\faculty_profile.jpg" />
+    <Content Include="images\hackathon_auditorium.jpg" />
+    <Content Include="images\robotics_lab.jpg" />
+    <Content Include="images\robotics_team.jpg" />
+    <Content Include="images\sarina_profile.jpg" />
+    <Content Include="images\server_room.jpg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>51743</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:51743/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl></CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
