@@ -1,9 +1,55 @@
-<%@ Page Language="C#" MasterPageFile="~/Site.Master" Title="Robotics Club" %>
+<%@ Page Language="C#" MasterPageFile="~/Site.Master" Title="Robotics Club" CodeBehind="ClubDetails.aspx.cs" Inherits="CampusForum.Student.ClubDetails" %>
+
 <asp:Content ID="PageContent" ContentPlaceHolderID="MainContent" runat="server">
-<div class="cols"><div class="stack">
- <section class="panel no-pad"><div style="height:175px;background:#345994;color:white;display:flex;align-items:end;padding:22px"><h1>&#x2699; Robotics Club</h1></div><div class="panel-body"><p>Dedicated to the exploration, design, and competitive application of autonomous and remote-controlled robotic systems. We welcome students from all engineering and computer science disciplines.</p><div class="actions"><button class="primary" data-toggle data-on="&#x2713; Joined" data-off="Join Club">Join Club</button><a class="btn" href="/Student/Messages.aspx">Message Board</a></div></div></section>
- <div class="two-cols"><section class="panel"><h3>&#x25A3; Upcoming Events</h3><p><b class="badge">OCT 14</b> SumoBot Competition Prep<br/><small>Engineering Lab 3B &#x2022; 6:00 PM</small></p><hr class="subtle-rule"/><p><b class="badge">OCT 21</b> Guest Lecture: AI in Automation<br/><small>Main Auditorium &#x2022; 7:30 PM</small></p></section><section class="panel"><h3>&#x2659; Leadership</h3><p><b>Sarina Wangchuk</b><br/><small>President</small></p><hr class="subtle-rule"/><p><b>Dhaval Kothari</b><br/><small>Lead Engineer</small></p></section></div>
- <section class="panel"><h3>&#x25A7; Project Gallery</h3><div class="two-cols"><img style="width:100%;height:165px;object-fit:cover" src="/images/robotics_lab.jpg" alt="Robotics lab"/><img style="width:100%;height:165px;object-fit:cover" src="/images/robotics_team.jpg" alt="Robotics team"/></div></section>
- </div><aside class="stack"><section class="panel"><h3>Announcements</h3><p><b>Parts Order:</b> The next Digikey order goes out Friday. Submit your BOMs to David.</p><hr class="subtle-rule"/><p>Lab Cleanup: Mandatory lab cleanup this Sunday at 10 AM. Pizza provided.</p></section><section class="panel"><h3>Top Contributors</h3><p class="row between">1. Mahesh M. <span>142 pts</span></p><p class="row between">2. Eva R. <span>98 pts</span></p></section></aside></div>
+    <div class="cols">
+        <div class="stack">
+            <section class="panel no-pad">
+                <div style="height: 175px; background: #345994; color: white; display: flex; align-items: end; padding: 22px">
+                    <h1>&#x2699; Robotics Club</h1>
+                </div>
+                <div class="panel-body">
+                    <p>Dedicated to the exploration, design, and competitive application of autonomous and remote-controlled robotic systems. We welcome students from all engineering and computer science disciplines.</p>
+                    <div class="actions">
+                        <button type="button" class="primary" data-toggle data-on="&#x2713; Joined" data-off="Join Club">Join Club</button><a class="btn" href="/Student/Messages.aspx">Message Board</a></div>
+                </div>
+            </section>
+            <div class="two-cols">
+                <section class="panel">
+                    <h3>&#x25A3; Upcoming Events</h3>
+                    <p><b class="badge">OCT 14</b> SumoBot Competition Prep<br />
+                        <small>Engineering Lab 3B &#x2022; 6:00 PM</small></p>
+                    <hr class="subtle-rule" />
+                    <p><b class="badge">OCT 21</b> Guest Lecture: AI in Automation<br />
+                        <small>Main Auditorium &#x2022; 7:30 PM</small></p>
+                </section>
+                <section class="panel">
+                    <h3>&#x2659; Leadership</h3>
+                    <p><b>Sarina Wangchuk</b><br />
+                        <small>President</small></p>
+                    <hr class="subtle-rule" />
+                    <p><b>Dhaval Kothari</b><br />
+                        <small>Lead Engineer</small></p>
+                </section>
+            </div>
+            <section class="panel">
+                <h3>&#x25A7; Project Gallery</h3>
+                <div class="two-cols">
+                    <img style="width: 100%; height: 165px; object-fit: cover" src="/images/robotics_lab.jpg" alt="Robotics lab" /><img style="width: 100%; height: 165px; object-fit: cover" src="/images/robotics_team.jpg" alt="Robotics team" /></div>
+            </section>
+        </div>
+        <aside class="stack">
+            <section class="panel">
+                <h3>Announcements</h3>
+                <p><b>Parts Order:</b> The next Digikey order goes out Friday. Submit your BOMs to David.</p>
+                <hr class="subtle-rule" />
+                <p>Lab Cleanup: Mandatory lab cleanup this Sunday at 10 AM. Pizza provided.</p>
+            </section>
+            <section class="panel">
+                <h3>Top Contributors</h3>
+                <p class="row between">1. Mahesh M. <span>142 pts</span></p>
+                <p class="row between">2. Eva R. <span>98 pts</span></p>
+            </section>
+        </aside>
+    </div>
 
 </asp:Content>

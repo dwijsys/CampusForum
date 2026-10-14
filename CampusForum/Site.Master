@@ -1,32 +1,4 @@
-<%@ Master Language="C#" %>
-<script runat="server">
-    // Read the current page name so we can display the correct menu.
-    protected string CurrentPath
-    {
-        get { return Request.AppRelativeCurrentExecutionFilePath.ToLowerInvariant(); }
-    }
-
-    protected bool IsAdmin
-    {
-        get { return CurrentPath.StartsWith("~/admin/") && !CurrentPath.EndsWith("/login.aspx"); }
-    }
-
-    protected bool IsGuest
-    {
-        get { return CurrentPath.EndsWith("~/default.aspx"); }
-    }
-
-    protected bool IsAdminLogin
-    {
-        get { return CurrentPath.EndsWith("/admin/login.aspx"); }
-    }
-
-    // Mark the active page blue in the sidebar.
-    protected string Active(string page)
-    {
-        return CurrentPath.EndsWith("/" + page.ToLowerInvariant() + ".aspx") ? "active" : "";
-    }
-</script>
+<%@ Master Language="C#" CodeBehind="Site.Master.cs" Inherits="CampusForum.SiteMaster" %>
 <!DOCTYPE html>
 <html lang="en">
 <head runat="server">
@@ -36,11 +8,12 @@
     <link rel="stylesheet" href="/Content/site.css" />
 </head>
 <body class="<%= IsAdminLogin ? "mode-admin-login" : (IsAdmin ? "mode-admin" : (IsGuest ? "mode-guest" : "mode-student")) %>">
+    <form id="MainForm" runat="server" enctype="multipart/form-data">
     <header class="topbar">
         <a class="brand" href="<%= IsAdmin ? ResolveUrl("~/Admin/Dashboard.aspx") : (IsGuest ? ResolveUrl("~/Default.aspx") : ResolveUrl("~/Student/Feed.aspx")) %>"><%= IsAdmin ? "Campus Admin Portal" : "CampusForum" %></a>
-        <form class="global-search" action="<%= ResolveUrl("~/Common/Search.aspx") %>" method="get">
-            <input name="q" placeholder="<%= IsAdmin ? "Search system..." : "Search forum..." %>" aria-label="Search CampusForum" />
-        </form>
+        <div class="global-search">
+            <input id="globalSearchInput" name="q" placeholder="<%= IsAdmin ? "Search system..." : "Search forum..." %>" aria-label="Search CampusForum" />
+        </div>
         <nav class="top-links">
             <% if (IsAdmin) { %>
                 <a href="<%= ResolveUrl("~/Admin/Dashboard.aspx") %>">Dashboard</a>
@@ -101,5 +74,6 @@
     </footer>
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
     <script src="<%= ResolveUrl("~/Scripts/site.js") %>"></script>
+    </form>
 </body>
 </html>

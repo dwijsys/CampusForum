@@ -1,4 +1,4 @@
-<%@ Page Language="C#" MasterPageFile="~/Site.Master" Title="Broadcast Management" %>
+<%@ Page Language="C#" MasterPageFile="~/Site.Master" Title="Broadcast Management" CodeBehind="Broadcast.aspx.cs" Inherits="CampusForum.Admin.Broadcast" %>
 
 <asp:Content ID="PageContent" ContentPlaceHolderID="MainContent" runat="server">
     <div class="stack">
@@ -8,27 +8,29 @@
                 <p class="muted">Utility for global institutional announcements and critical alerts.</p>
             </div>
             <div class="actions">
-                <button data-demo="Refreshed sample broadcasts.">&#x27F3; REFRESH LIST</button>
-                <button class="primary" data-demo="Draft saving requires a database.">SAVE DRAFT</button></div>
+                <button type="button" data-demo="Refreshed sample broadcasts.">&#x27F3; REFRESH LIST</button>
+                <button type="button" class="primary" data-demo="Draft saving requires a database.">SAVE DRAFT</button></div>
         </div>
         <div class="cols" style="grid-template-columns: minmax(0,1fr) 335px">
             <section class="panel">
                 <h3>COMPOSE NEW BROADCAST</h3>
                 <hr class="subtle-rule" />
-                <form data-demo-form="Broadcast executed">
+                <div class="form-section">
+                    <asp:ValidationSummary ID="summary1" runat="server" ValidationGroup="Broadcast" CssClass="validation-summary" HeaderText="Please correct these fields:" DisplayMode="BulletList" />
                     <div class="field">
-                        <label>BROADCAST TITLE</label><input placeholder="Enter concise alert heading..." required /></div>
+                        <label>BROADCAST TITLE</label><asp:TextBox ID="txtBroadcastTitle" runat="server" placeholder="Enter concise alert heading..." MaxLength="160" /><asp:RequiredFieldValidator ID="rfvTxtBroadcastTitle" runat="server" ControlToValidate="txtBroadcastTitle" ValidationGroup="Broadcast" ErrorMessage="Broadcast title is required." Text="Broadcast title is required." CssClass="validation-message" Display="Dynamic" /></div>
                     <div class="field">
                         <label>MESSAGE BODY (RICH TEXT)</label><div class="soft" style="padding: 6px; border: 1px solid #ddd">B &nbsp; I &nbsp; &#x2261; &nbsp; &#x2197;</div>
-                        <textarea placeholder="Type message content here..." style="min-height: 180px" required></textarea></div>
+                        <asp:TextBox ID="txtBroadcastMessage" runat="server" TextMode="MultiLine" Text="" placeholder="Type message content here..." Style="min-height: 180px" /><asp:RequiredFieldValidator ID="rfvTxtBroadcastMessage" runat="server" ControlToValidate="txtBroadcastMessage" ValidationGroup="Broadcast" ErrorMessage="Message body is required." Text="Message body is required." CssClass="validation-message" Display="Dynamic" /></div>
                     <div class="two-cols">
                         <div class="panel">
                             <h3>TARGETING</h3>
                             <div class="field">
-                                <label>AUDIENCE</label><select><option>Global (All Users)</option>
-                                    <option>Faculty Only</option>
-                                    <option>Students Only</option>
-                                </select></div>
+                                <label>AUDIENCE</label><asp:DropDownList ID="ddlAudience" runat="server">
+                                    <asp:ListItem Value="Global (All Users)">Global (All Users)</asp:ListItem>
+                                    <asp:ListItem Value="Faculty Only">Faculty Only</asp:ListItem>
+                                    <asp:ListItem Value="Students Only">Students Only</asp:ListItem>
+                                </asp:DropDownList></div>
                             <div class="field">
                                 <label>PRIORITY LEVEL</label><label><input type="radio" name="priority" checked />
                                     Low</label>
@@ -42,14 +44,15 @@
                         <div class="panel">
                             <h3>SCHEDULING</h3>
                             <div class="field">
-                                <label>SEND DATE / TIME</label><input type="datetime-local" /></div>
+                                <label>SEND DATE / TIME</label><asp:TextBox ID="txtSendDate" runat="server" TextMode="DateTimeLocal" /></div>
                             <div class="field">
-                                <label>EXPIRY DATE / TIME</label><input type="datetime-local" /></div>
+                                <label>EXPIRY DATE / TIME</label><asp:TextBox ID="txtExpiryDate" runat="server" TextMode="DateTimeLocal" /><asp:CustomValidator ID="cvBroadcastSchedule" runat="server" ValidationGroup="Broadcast" OnServerValidate="ValidateSchedule" ErrorMessage="Use valid dates; expiry must be after the send time." Text="Use valid dates; expiry must be after the send time." CssClass="validation-message" Display="Dynamic" EnableClientScript="false" /></div>
                         </div>
                     </div>
                     <div class="actions" style="justify-content: end; margin-top: 15px">
-                        <button class="primary">EXECUTE BROADCAST</button></div>
-                </form>
+                        <asp:Button ID="btnBroadcast" runat="server" Text="EXECUTE BROADCAST" ValidationGroup="Broadcast" OnClick="Broadcast_Click" CssClass="primary" /></div>
+                    <asp:Label ID="lblFormStatus1" runat="server" CssClass="demo-status" EnableViewState="false" />
+                </div>
             </section>
             <aside class="panel no-pad">
                 <div class="panel-header">END-USER PREVIEW (STUDENT DASHBOARD)</div>
@@ -87,7 +90,7 @@
                             <td>12,450 users (88%)</td>
                             <td>2 h 15 m</td>
                             <td>
-                                <button class="tiny" data-demo="Editing a sent broadcast needs a backend.">Edit</button></td>
+                                <button type="button" class="tiny" data-demo="Editing a sent broadcast needs a backend.">Edit</button></td>
                         </tr>
                         <tr>
                             <td>1091</td>
@@ -98,7 +101,7 @@
                             <td>420 users (0%)</td>
                             <td>T-Minus 12h</td>
                             <td>
-                                <button class="tiny" data-demo="Demo only.">Edit</button></td>
+                                <button type="button" class="tiny" data-demo="Demo only.">Edit</button></td>
                         </tr>
                         <tr>
                             <td>1089</td>
@@ -109,7 +112,7 @@
                             <td>22,000 users (99%)</td>
                             <td>&#x2014;</td>
                             <td>
-                                <button class="tiny" data-demo="Clone demo.">Clone</button></td>
+                                <button type="button" class="tiny" data-demo="Clone demo.">Clone</button></td>
                         </tr>
                     </tbody>
                 </table>

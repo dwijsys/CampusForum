@@ -20,39 +20,12 @@ document.addEventListener('click', function (event) {
     if (demo) showMessage(demo.dataset.demo || 'Demo action only. Database not connected.');
 });
 
-document.addEventListener('submit', function (event) {
-    const form = event.target;
-    if (form.dataset.demoForm) {
+// One ASP.NET <form runat="server"> wraps the page. Buttons with .NET validators
+// post back to their individual .aspx.cs handlers; do not intercept submissions.
+document.addEventListener('keydown', function (event) {
+    if (event.target && event.target.id === 'globalSearchInput' && event.key === 'Enter') {
         event.preventDefault();
-        showMessage(form.dataset.demoForm + ' (Demo only: not saved to a database.)');
-        form.reset();
-    }
-    if (form.id === 'post-form') {
-        event.preventDefault();
-        const text = form.querySelector('textarea').value.trim();
-        if (!text) return showMessage('Write something first.');
-        const card = document.createElement('article');
-        card.className = 'card';
-        const heading = document.createElement('h3');
-        heading.textContent = 'You \u2022 Just now';
-        const paragraph = document.createElement('p');
-        paragraph.textContent = text;
-        card.append(heading, paragraph);
-        document.getElementById('feed-posts').prepend(card);
-        form.reset();
-        showMessage('Post added to this page (demo only).');
-    }
-    if (form.id === 'chat-form') {
-        event.preventDefault();
-        const field = form.querySelector('textarea');
-        const text = field.value.trim();
-        if (!text) return;
-        const bubble = document.createElement('div');
-        bubble.className = 'bubble me';
-        bubble.textContent = text;
-        document.getElementById('chat-messages').appendChild(bubble);
-        field.value = '';
-        bubble.scrollIntoView({behavior: 'smooth'});
+        window.location.href = '/Common/Search.aspx?q=' + encodeURIComponent(event.target.value || '');
     }
 });
 

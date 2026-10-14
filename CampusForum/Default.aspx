@@ -1,15 +1,15 @@
-<%@ Page Language="C#" MasterPageFile="~/Site.Master" Title="Welcome" %>
+<%@ Page Language="C#" MasterPageFile="~/Site.Master" Title="Welcome" CodeBehind="Default.aspx.cs" Inherits="CampusForum.DefaultPage" %>
 <asp:Content ID="PageContent" ContentPlaceHolderID="MainContent" runat="server">
 <div class="guest-page">
     <aside class="stack">
         <section class="panel login-card">
             <h3>Member Login</h3>
-            <form onsubmit="window.location.href='/Student/Feed.aspx'; return false;">
-                <div class="field"><label for="member-id">ID / Email</label><input id="member-id" placeholder="Student ID or email" required /></div>
-                <div class="field"><label for="member-pass">Password</label><input type="password" id="member-pass" placeholder="Password" required /></div>
+            <div class="form-section"><asp:ValidationSummary ID="summary1" runat="server" ValidationGroup="MemberLogin" CssClass="validation-summary" HeaderText="Please correct these fields:" DisplayMode="BulletList" />
+                <div class="field"><label for="txtMemberId">ID / Email</label><asp:TextBox ID="txtMemberId" runat="server" ClientIDMode="Static" placeholder="Student ID or email" MaxLength="100" /><asp:RequiredFieldValidator ID="rfvTxtMemberId" runat="server" ControlToValidate="txtMemberId" ValidationGroup="MemberLogin" ErrorMessage="Student ID or email is required." Text="Student ID or email is required." CssClass="validation-message" Display="Dynamic" /></div>
+                <div class="field"><label for="txtMemberPassword">Password</label><asp:TextBox ID="txtMemberPassword" runat="server" ClientIDMode="Static" TextMode="Password" placeholder="Password" MaxLength="256" /><asp:RequiredFieldValidator ID="rfvTxtMemberPassword" runat="server" ControlToValidate="txtMemberPassword" ValidationGroup="MemberLogin" ErrorMessage="Password is required." Text="Password is required." CssClass="validation-message" Display="Dynamic" /></div>
                 <div class="row between" style="margin-bottom:12px"><label class="hint"><input type="checkbox" /> Remember me</label><a href="/Common/Help.aspx"><small>Forgot?</small></a></div>
-                <button class="primary wide">Sign In</button>
-            </form>
+                <asp:Button ID="btnMemberLogin" runat="server" Text="Sign In" ValidationGroup="MemberLogin" OnClick="MemberLogin_Click" CssClass="primary wide" />
+            <asp:Label ID="lblFormStatus1" runat="server" CssClass="demo-status" EnableViewState="false" /></div>
         </section>
         <section class="panel" style="text-align:center">
             <div style="font-size:29px;color:#45649b">&#x2667;</div>

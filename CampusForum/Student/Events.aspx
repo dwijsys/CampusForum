@@ -1,12 +1,73 @@
-<%@ Page Language="C#" MasterPageFile="~/Site.Master" Title="Events Discovery" %>
+<%@ Page Language="C#" MasterPageFile="~/Site.Master" Title="Events Discovery" CodeBehind="Events.aspx.cs" Inherits="CampusForum.Student.Events" %>
+
 <asp:Content ID="PageContent" ContentPlaceHolderID="MainContent" runat="server">
-<div class="cols"><div class="stack">
- <div class="section-heading"><div><h1>Events Discovery</h1><p class="muted">Find and register for activities happening across campus.</p></div></div>
- <div class="tabs"><a class="active" href="/Student/Events.aspx">Upcoming Events</a><a href="/Student/Events.aspx">My Registrations</a><a href="/Student/Events.aspx">Calendar View</a></div>
- <section class="panel"><b>Filter by Category:</b><div class="tabs" style="margin-top:9px" data-filter-group="events"><button class="active" data-filter="all">All</button><button data-filter="hackathons">Hackathons</button><button data-filter="sports">Sports</button><button data-filter="seminars">Seminars</button><button data-filter="workshops">Workshops</button><button data-filter="festivals">Festivals</button></div></section>
- <section class="panel no-pad"><div class="event-row" data-category-group="events" data-category="hackathons"><div class="event-date">OCT<br/><big>24</big></div><div><span class="badge pull-right">HACKATHONS</span><h3><a href="/Student/EventDetails.aspx">Annual Tech Hackathon 2024</a></h3><p>Join us for a 48-hour coding marathon. Build innovative solutions, meet industry mentors, and win amazing prizes. Open to all skill levels.</p><small>9:00 AM - Sun 5:00 PM &#x2022; CS Building, Main Hall &#x2022; Computer Science Club</small><div class="actions" style="margin-top:9px"><a class="btn primary" href="/Student/EventDetails.aspx">Register</a><button data-toggle data-on="&#x2713; Interested" data-off="Interested">Interested</button></div></div></div>
- <div class="event-row" data-category-group="events" data-category="seminars"><div class="event-date">NOV<br/><big>02</big></div><div><span class="badge pull-right">SEMINARS</span><h3>Guest Lecture: Future of AI</h3><p>Dr. Alan Turing Jr. discusses the ethical implications and future trajectory of generative AI models in academic research.</p><small>2:00 PM - 3:30 PM &#x2022; Auditorium A &#x2022; Dept. of Philosophy</small><div class="actions" style="margin-top:9px"><button data-toggle data-on="&#x2713; Interested" data-off="Interested">Interested</button></div></div></div>
- <div class="event-row" data-category-group="events" data-category="sports"><div class="event-date">NOV<br/><big>15</big></div><div><span class="badge pull-right">SPORTS</span><h3>Inter-Departmental Volleyball Tournament</h3><p>Cheer for your department in the annual fall volleyball championship. Food trucks and music will be available on-site.</p><small>10:00 AM - 4:00 PM &#x2022; Main Campus Gym &#x2022; Student Union</small><div class="actions" style="margin-top:9px"><button disabled>Registration Closed</button><button data-toggle data-on="&#x2713; Interested" data-off="Interested">Interested</button></div></div></div></section>
- </div><aside class="stack"><section class="panel"><h3>Organize an Event</h3><p>Are you a club president or faculty member? Add your event to the directory.</p><button class="primary wide" data-demo="Event creation requires a database and moderation.">Submit New Event</button></section><section class="panel"><h3>My Reminders <span class="badge">2</span></h3><p>Tomorrow, 10:00 AM<br/><b>Resume Building Workshop</b><br/><small>Career Center, Rm 204</small></p><p>Today, 5:00 PM<br/><b>Registration Deadline: Chess Tourney</b></p></section><section class="panel"><h3>Mini Calendar</h3><p style="text-align:center">October 2024</p><div class="calendar"><b>S</b><b>M</b><b>T</b><b>W</b><b>T</b><b>F</b><b>S</b><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span class="selected">17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span></div></section></aside></div>
+    <div class="cols">
+        <div class="stack">
+            <div class="section-heading">
+                <div>
+                    <h1>Events Discovery</h1>
+                    <p class="muted">Find and register for activities happening across campus.</p>
+                </div>
+            </div>
+            <div class="tabs"><a class="active" href="/Student/Events.aspx">Upcoming Events</a><a href="/Student/Events.aspx">My Registrations</a><a href="/Student/Events.aspx">Calendar View</a></div>
+            <section class="panel"><b>Filter by Category:</b><div class="tabs" style="margin-top: 9px" data-filter-group="events">
+                <button type="button" class="active" data-filter="all">All</button>
+                <button type="button" data-filter="hackathons">Hackathons</button>
+                <button type="button" data-filter="sports">Sports</button>
+                <button type="button" data-filter="seminars">Seminars</button>
+                <button type="button" data-filter="workshops">Workshops</button>
+                <button type="button" data-filter="festivals">Festivals</button></div>
+            </section>
+            <section class="panel no-pad">
+                <div class="event-row" data-category-group="events" data-category="hackathons">
+                    <div class="event-date">OCT<br />
+                        <big>24</big></div>
+                    <div><span class="badge pull-right">HACKATHONS</span><h3><a href="/Student/EventDetails.aspx">Annual Tech Hackathon 2024</a></h3>
+                        <p>Join us for a 48-hour coding marathon. Build innovative solutions, meet industry mentors, and win amazing prizes. Open to all skill levels.</p>
+                        <small>9:00 AM - Sun 5:00 PM &#x2022; CS Building, Main Hall &#x2022; Computer Science Club</small><div class="actions" style="margin-top: 9px"><a class="btn primary" href="/Student/EventDetails.aspx">Register</a>
+                            <button type="button" data-toggle data-on="&#x2713; Interested" data-off="Interested">Interested</button></div>
+                    </div>
+                </div>
+                <div class="event-row" data-category-group="events" data-category="seminars">
+                    <div class="event-date">NOV<br />
+                        <big>02</big></div>
+                    <div><span class="badge pull-right">SEMINARS</span><h3>Guest Lecture: Future of AI</h3>
+                        <p>Dr. Alan Turing Jr. discusses the ethical implications and future trajectory of generative AI models in academic research.</p>
+                        <small>2:00 PM - 3:30 PM &#x2022; Auditorium A &#x2022; Dept. of Philosophy</small><div class="actions" style="margin-top: 9px">
+                            <button type="button" data-toggle data-on="&#x2713; Interested" data-off="Interested">Interested</button></div>
+                    </div>
+                </div>
+                <div class="event-row" data-category-group="events" data-category="sports">
+                    <div class="event-date">NOV<br />
+                        <big>15</big></div>
+                    <div><span class="badge pull-right">SPORTS</span><h3>Inter-Departmental Volleyball Tournament</h3>
+                        <p>Cheer for your department in the annual fall volleyball championship. Food trucks and music will be available on-site.</p>
+                        <small>10:00 AM - 4:00 PM &#x2022; Main Campus Gym &#x2022; Student Union</small><div class="actions" style="margin-top: 9px">
+                            <button type="button" disabled>Registration Closed</button>
+                            <button type="button" data-toggle data-on="&#x2713; Interested" data-off="Interested">Interested</button></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <aside class="stack">
+            <section class="panel">
+                <h3>Organize an Event</h3>
+                <p>Are you a club president or faculty member? Add your event to the directory.</p>
+                <button type="button" class="primary wide" data-demo="Event creation requires a database and moderation.">Submit New Event</button></section>
+            <section class="panel">
+                <h3>My Reminders <span class="badge">2</span></h3>
+                <p>Tomorrow, 10:00 AM<br />
+                    <b>Resume Building Workshop</b><br />
+                    <small>Career Center, Rm 204</small></p>
+                <p>Today, 5:00 PM<br />
+                    <b>Registration Deadline: Chess Tourney</b></p>
+            </section>
+            <section class="panel">
+                <h3>Mini Calendar</h3>
+                <p style="text-align: center">October 2024</p>
+                <div class="calendar"><b>S</b><b>M</b><b>T</b><b>W</b><b>T</b><b>F</b><b>S</b><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span class="selected">17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span></div>
+            </section>
+        </aside>
+    </div>
 
 </asp:Content>

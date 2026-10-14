@@ -1,14 +1,99 @@
-<%@ Page Language="C#" MasterPageFile="~/Site.Master" Title="Faculty Management" %>
+<%@ Page Language="C#" MasterPageFile="~/Site.Master" Title="Faculty Management" CodeBehind="Faculty.aspx.cs" Inherits="CampusForum.Admin.Faculty" %>
+
 <asp:Content ID="PageContent" ContentPlaceHolderID="MainContent" runat="server">
-<div class="stack"><div class="section-heading"><div><div class="muted">MAIN ADMINISTRATION &#x203A; FACULTY MANAGEMENT</div><h1>Faculty Member Directory</h1></div><button class="primary" data-demo="Adding faculty requires a connected database.">+ ADD NEW FACULTY</button></div>
- <div class="three-cols" style="grid-template-columns:repeat(4,1fr)"><div class="metric"><span>Total Personnel</span><strong>1,248</strong></div><div class="metric"><span>Active Status</span><strong>1,180</strong></div><div class="metric"><span>On Leave</span><strong style="color:#b44352">68</strong></div><div class="metric"><span>Pending Reviews</span><strong>24</strong><small>Tenure applications</small></div></div>
- <section class="panel"><div class="field-grid" style="grid-template-columns:repeat(3,1fr)"><div class="field"><label>Department</label><select><option>All Departments</option><option>Computer Science</option><option>History &amp; Arts</option></select></div><div class="field"><label>Status</label><select><option>All Statuses</option><option>Active</option><option>On Leave</option></select></div><div class="field"><label>Designation</label><select><option>All Ranks</option><option>Senior Professor</option><option>Associate Professor</option></select></div></div><div class="actions" style="justify-content:end"><button data-demo="Filters reset for the sample.">&#xD7; CLEAR</button><button data-demo="CSV export needs real data.">&#x21A7; EXPORT CSV</button></div></section>
- <div class="table-wrap"><table><thead><tr><th>&#x25A1;</th><th>Name</th><th>Employee ID</th><th>Department</th><th>Designation</th><th>Status</th><th>Actions</th></tr></thead><tbody>
- <tr><td><input type="checkbox"/></td><td><a href="/Admin/EditFaculty.aspx">Dr. Sarita Vyas</a></td><td>FAC-CS-2022-004</td><td>Computer Science</td><td>Dean of Engineering</td><td><span class="badge green">ACTIVE</span></td><td><a href="/Admin/EditFaculty.aspx">&#x270E; Edit</a></td></tr>
- <tr><td><input type="checkbox"/></td><td><a href="/Admin/EditFaculty.aspx">Prof. Rivaan Gokhale</a></td><td>FAC-HIS-1998-102</td><td>History &amp; Arts</td><td>Senior Professor</td><td><span class="badge green">ACTIVE</span></td><td><a href="/Admin/EditFaculty.aspx">&#x270E; Edit</a></td></tr>
- <tr><td><input type="checkbox"/></td><td><a href="/Admin/EditFaculty.aspx">Dr. Ananya Sharma</a></td><td>FAC-BIO-2015-088</td><td>Biotechnology</td><td>Associate Prof.</td><td><span class="badge yellow">ON LEAVE</span></td><td><a href="/Admin/EditFaculty.aspx">&#x270E; Edit</a></td></tr>
- <tr><td><input type="checkbox"/></td><td><a href="/Admin/EditFaculty.aspx">Mr. Dhruv Bhut</a></td><td>FAC-MAT-2020-112</td><td>Mathematics</td><td>Assistant Prof.</td><td><span class="badge green">ACTIVE</span></td><td><a href="/Admin/EditFaculty.aspx">&#x270E; Edit</a></td></tr>
- </tbody></table></div><p class="muted">Showing 1 to 25 of 1,248 entries (sample data)</p>
-</div>
+    <div class="stack">
+        <div class="section-heading">
+            <div>
+                <div class="muted">MAIN ADMINISTRATION &#x203A; FACULTY MANAGEMENT</div>
+                <h1>Faculty Member Directory</h1>
+            </div>
+            <button type="button" class="primary" data-demo="Adding faculty requires a connected database.">+ ADD NEW FACULTY</button></div>
+        <div class="three-cols" style="grid-template-columns: repeat(4,1fr)">
+            <div class="metric"><span>Total Personnel</span><strong>1,248</strong></div>
+            <div class="metric"><span>Active Status</span><strong>1,180</strong></div>
+            <div class="metric"><span>On Leave</span><strong style="color: #b44352">68</strong></div>
+            <div class="metric"><span>Pending Reviews</span><strong>24</strong><small>Tenure applications</small></div>
+        </div>
+        <section class="panel">
+            <div class="field-grid" style="grid-template-columns: repeat(3,1fr)">
+                <div class="field">
+                    <label>Department</label><select><option>All Departments</option>
+                        <option>Computer Science</option>
+                        <option>History &amp; Arts</option>
+                    </select></div>
+                <div class="field">
+                    <label>Status</label><select><option>All Statuses</option>
+                        <option>Active</option>
+                        <option>On Leave</option>
+                    </select></div>
+                <div class="field">
+                    <label>Designation</label><select><option>All Ranks</option>
+                        <option>Senior Professor</option>
+                        <option>Associate Professor</option>
+                    </select></div>
+            </div>
+            <div class="actions" style="justify-content: end">
+                <button type="button" data-demo="Filters reset for the sample.">&#xD7; CLEAR</button>
+                <button type="button" data-demo="CSV export needs real data.">&#x21A7; EXPORT CSV</button></div>
+        </section>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>&#x25A1;</th>
+                        <th>Name</th>
+                        <th>Employee ID</th>
+                        <th>Department</th>
+                        <th>Designation</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <input type="checkbox" /></td>
+                        <td><a href="/Admin/EditFaculty.aspx">Dr. Sarita Vyas</a></td>
+                        <td>FAC-CS-2022-004</td>
+                        <td>Computer Science</td>
+                        <td>Dean of Engineering</td>
+                        <td><span class="badge green">ACTIVE</span></td>
+                        <td><a href="/Admin/EditFaculty.aspx">&#x270E; Edit</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" /></td>
+                        <td><a href="/Admin/EditFaculty.aspx">Prof. Rivaan Gokhale</a></td>
+                        <td>FAC-HIS-1998-102</td>
+                        <td>History &amp; Arts</td>
+                        <td>Senior Professor</td>
+                        <td><span class="badge green">ACTIVE</span></td>
+                        <td><a href="/Admin/EditFaculty.aspx">&#x270E; Edit</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" /></td>
+                        <td><a href="/Admin/EditFaculty.aspx">Dr. Ananya Sharma</a></td>
+                        <td>FAC-BIO-2015-088</td>
+                        <td>Biotechnology</td>
+                        <td>Associate Prof.</td>
+                        <td><span class="badge yellow">ON LEAVE</span></td>
+                        <td><a href="/Admin/EditFaculty.aspx">&#x270E; Edit</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" /></td>
+                        <td><a href="/Admin/EditFaculty.aspx">Mr. Dhruv Bhut</a></td>
+                        <td>FAC-MAT-2020-112</td>
+                        <td>Mathematics</td>
+                        <td>Assistant Prof.</td>
+                        <td><span class="badge green">ACTIVE</span></td>
+                        <td><a href="/Admin/EditFaculty.aspx">&#x270E; Edit</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="muted">Showing 1 to 25 of 1,248 entries (sample data)</p>
+    </div>
 
 </asp:Content>

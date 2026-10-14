@@ -1,16 +1,115 @@
-<%@ Page Language="C#" MasterPageFile="~/Site.Master" Title="Department Management" %>
+<%@ Page Language="C#" MasterPageFile="~/Site.Master" Title="Department Management" CodeBehind="Departments.aspx.cs" Inherits="CampusForum.Admin.Departments" %>
+
 <asp:Content ID="PageContent" ContentPlaceHolderID="MainContent" runat="server">
-<div class="stack"><div class="section-heading"><div><h1>Department Management</h1><p class="muted">Main Console &#x203A; Academic Structure &#x203A; Department Registry</p></div><button class="primary" data-demo="Adding departments needs a database.">+ Add New Department</button></div>
- <div class="three-cols" style="grid-template-columns:repeat(4,1fr)"><div class="metric"><span>Active Departments</span><strong>12</strong></div><div class="metric"><span>Total Enrolled</span><strong>4,822</strong></div><div class="metric"><span>Faculty Nodes</span><strong>342</strong></div><div class="metric"><span>Research Output</span><strong>89</strong></div></div>
- <div class="panel"><div class="row between"><div class="tabs" data-filter-group="departments"><button class="active" data-filter="all">ALL DEPARTMENTS</button><button data-filter="stem">STEM</button><button data-filter="humanities">HUMANITIES</button></div><div class="actions"><input class="input" placeholder="Search departments..." style="width:210px"/><button data-demo="This is a sample filter.">FILTER</button></div></div></div>
- <div class="table-wrap"><table><thead><tr><th>&#x25A1;</th><th>Department Name</th><th>Total Students</th><th>Faculty</th><th>Projects</th><th>Head of Dept.</th><th>Status</th><th>Actions</th></tr></thead><tbody>
- <tr data-category-group="departments" data-category="stem"><td><input type="checkbox"/></td><td><a href="/Admin/DepartmentDetails.aspx">Computer Science &amp; Engineering</a></td><td>1,240</td><td>42</td><td>18</td><td>Dr. Ayan Mehra</td><td><span class="badge green">ACTIVE</span></td><td><a href="/Admin/DepartmentDetails.aspx">&#x1F441; View</a></td></tr>
- <tr data-category-group="departments" data-category="humanities"><td><input type="checkbox"/></td><td><a href="/Admin/DepartmentDetails.aspx">Department of Humanities</a></td><td>850</td><td>28</td><td>04</td><td>Dr. Maya Angelou</td><td><span class="badge green">ACTIVE</span></td><td><a href="/Admin/DepartmentDetails.aspx">&#x1F441; View</a></td></tr>
- <tr data-category-group="departments" data-category="stem"><td><input type="checkbox"/></td><td>Biological Sciences</td><td>620</td><td>31</td><td>22</td><td>Dr. Roshni Kumar</td><td><span class="badge yellow">PENDING AUDIT</span></td><td><a href="/Admin/DepartmentDetails.aspx">&#x1F441; View</a></td></tr>
- <tr data-category-group="departments" data-category="stem"><td><input type="checkbox"/></td><td>Theoretical Physics</td><td>410</td><td>15</td><td>09</td><td>Dr. Riya Patel</td><td><span class="badge green">ACTIVE</span></td><td><a href="/Admin/DepartmentDetails.aspx">&#x1F441; View</a></td></tr>
- <tr data-category-group="departments" data-category="humanities"><td><input type="checkbox"/></td><td>Department of Architecture</td><td>215</td><td>12</td><td>31</td><td>Prof. Zaha Hadid</td><td><span class="badge green">ACTIVE</span></td><td><a href="/Admin/DepartmentDetails.aspx">&#x1F441; View</a></td></tr>
- <tr data-category-group="departments" data-category="stem"><td><input type="checkbox"/></td><td>Center for Cybersecurity</td><td>112</td><td>08</td><td>02</td><td>Dr. Divyesh Vaja</td><td><span class="badge red">MAINTENANCE</span></td><td><a href="/Admin/DepartmentDetails.aspx">&#x1F441; View</a></td></tr>
- </tbody></table></div><div class="row between"><small>SHOWING 1-6 OF 12 ACADEMIC UNITS</small><a href="/Admin/DepartmentDetails.aspx">Open Department Details &#x2192;</a></div>
-</div>
+    <div class="stack">
+        <div class="section-heading">
+            <div>
+                <h1>Department Management</h1>
+                <p class="muted">Main Console &#x203A; Academic Structure &#x203A; Department Registry</p>
+            </div>
+            <button type="button" class="primary" data-demo="Adding departments needs a database.">+ Add New Department</button></div>
+        <div class="three-cols" style="grid-template-columns: repeat(4,1fr)">
+            <div class="metric"><span>Active Departments</span><strong>12</strong></div>
+            <div class="metric"><span>Total Enrolled</span><strong>4,822</strong></div>
+            <div class="metric"><span>Faculty Nodes</span><strong>342</strong></div>
+            <div class="metric"><span>Research Output</span><strong>89</strong></div>
+        </div>
+        <div class="panel">
+            <div class="row between">
+                <div class="tabs" data-filter-group="departments">
+                    <button type="button" class="active" data-filter="all">ALL DEPARTMENTS</button>
+                    <button type="button" data-filter="stem">STEM</button>
+                    <button type="button" data-filter="humanities">HUMANITIES</button></div>
+                <div class="actions">
+                    <input class="input" placeholder="Search departments..." style="width: 210px" />
+                    <button type="button" data-demo="This is a sample filter.">FILTER</button></div>
+            </div>
+        </div>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>&#x25A1;</th>
+                        <th>Department Name</th>
+                        <th>Total Students</th>
+                        <th>Faculty</th>
+                        <th>Projects</th>
+                        <th>Head of Dept.</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-category-group="departments" data-category="stem">
+                        <td>
+                            <input type="checkbox" /></td>
+                        <td><a href="/Admin/DepartmentDetails.aspx">Computer Science &amp; Engineering</a></td>
+                        <td>1,240</td>
+                        <td>42</td>
+                        <td>18</td>
+                        <td>Dr. Ayan Mehra</td>
+                        <td><span class="badge green">ACTIVE</span></td>
+                        <td><a href="/Admin/DepartmentDetails.aspx">&#x1F441; View</a></td>
+                    </tr>
+                    <tr data-category-group="departments" data-category="humanities">
+                        <td>
+                            <input type="checkbox" /></td>
+                        <td><a href="/Admin/DepartmentDetails.aspx">Department of Humanities</a></td>
+                        <td>850</td>
+                        <td>28</td>
+                        <td>04</td>
+                        <td>Dr. Maya Angelou</td>
+                        <td><span class="badge green">ACTIVE</span></td>
+                        <td><a href="/Admin/DepartmentDetails.aspx">&#x1F441; View</a></td>
+                    </tr>
+                    <tr data-category-group="departments" data-category="stem">
+                        <td>
+                            <input type="checkbox" /></td>
+                        <td>Biological Sciences</td>
+                        <td>620</td>
+                        <td>31</td>
+                        <td>22</td>
+                        <td>Dr. Roshni Kumar</td>
+                        <td><span class="badge yellow">PENDING AUDIT</span></td>
+                        <td><a href="/Admin/DepartmentDetails.aspx">&#x1F441; View</a></td>
+                    </tr>
+                    <tr data-category-group="departments" data-category="stem">
+                        <td>
+                            <input type="checkbox" /></td>
+                        <td>Theoretical Physics</td>
+                        <td>410</td>
+                        <td>15</td>
+                        <td>09</td>
+                        <td>Dr. Riya Patel</td>
+                        <td><span class="badge green">ACTIVE</span></td>
+                        <td><a href="/Admin/DepartmentDetails.aspx">&#x1F441; View</a></td>
+                    </tr>
+                    <tr data-category-group="departments" data-category="humanities">
+                        <td>
+                            <input type="checkbox" /></td>
+                        <td>Department of Architecture</td>
+                        <td>215</td>
+                        <td>12</td>
+                        <td>31</td>
+                        <td>Prof. Zaha Hadid</td>
+                        <td><span class="badge green">ACTIVE</span></td>
+                        <td><a href="/Admin/DepartmentDetails.aspx">&#x1F441; View</a></td>
+                    </tr>
+                    <tr data-category-group="departments" data-category="stem">
+                        <td>
+                            <input type="checkbox" /></td>
+                        <td>Center for Cybersecurity</td>
+                        <td>112</td>
+                        <td>08</td>
+                        <td>02</td>
+                        <td>Dr. Divyesh Vaja</td>
+                        <td><span class="badge red">MAINTENANCE</span></td>
+                        <td><a href="/Admin/DepartmentDetails.aspx">&#x1F441; View</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row between"><small>SHOWING 1-6 OF 12 ACADEMIC UNITS</small><a href="/Admin/DepartmentDetails.aspx">Open Department Details &#x2192;</a></div>
+    </div>
 
 </asp:Content>
